@@ -44,10 +44,8 @@ NL = '\n'
 async def prompt_app():
 
     print("Getting chats...")
-    me = await client.get_me()
     chats = await client.get_dialogs()
 
-    chat_index = ''
     while True:
         content = f'''Here are your chats ({page * page_size}-{page * page_size + page_size}):
 
