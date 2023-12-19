@@ -1,5 +1,6 @@
 import asyncio
 import os
+import time
 
 import dotenv
 from prompt_toolkit import PromptSession
@@ -89,7 +90,16 @@ Select a chat: '''
             req.close()
         return
     print(f'Deleting {len(delete_requests)} messages...')
-    await asyncio.gather(*delete_requests)
+    # If there are more than 100 messages, we need to delete them in batches of 100
+    if len(delete_requests) > 100:
+        print('Deleting in batches of 100...')
+        for i in range(0, len(delete_requests), 100):
+            await asyncio.gather(*delete_requests[i:min(i+100, len(delete_requests))])
+            print(f'Deleted {min(i+100, len(delete_requests))} messages...')
+            time.sleep(0.5)
+    else:
+        await asyncio.gather(*delete_requests)
+    print('Done!')
 
 
 def main():
