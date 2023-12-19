@@ -1,0 +1,7 @@
+prompt-toolkit==3.0.43
+pyaes==1.6.1
+pyasn1==0.5.1
+python-dotenv==1.0.0
+rsa==4.9
+Telethon==1.33.1
+wcwidth==0.2.12
