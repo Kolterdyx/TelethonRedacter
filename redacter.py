@@ -96,7 +96,7 @@ Select a chat: '''
         for i in range(0, len(delete_requests), 100):
             await asyncio.gather(*delete_requests[i:min(i+100, len(delete_requests))])
             print(f'Deleted {min(i+100, len(delete_requests))} messages...')
-            time.sleep(0.5)
+            await asyncio.sleep(0.5)
     else:
         await asyncio.gather(*delete_requests)
     print('Done!')
